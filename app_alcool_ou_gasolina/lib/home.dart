@@ -13,29 +13,21 @@ class _HomeState extends State<Home> {
 
   String InfoResultado = "";
 
-  void _calcular() {
-    setState(() {
-      double n1 = double.parse(n1Controller.text);
-      double n2 = double.parse(n2Controller.text);
 
-      double resultado = n1 * n2;
-      InfoResultado = 'Resultado: $resultado';
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: _AppBar(),
         body: _Body(),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
        );
   }
 
   _AppBar()
   {
    return AppBar(
-      title: Text("Multiplicador de números"),
+      title: Text("Alcool ou gasolina?"),
       centerTitle: true,
       backgroundColor: Colors.purple,
     );
@@ -48,11 +40,22 @@ class _HomeState extends State<Home> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              _imagemBombaPosto(),
               _texto1(),
               _texto2(),
               _botaoCalcular(),
-              _resultado()
+              _resultado(),
+
             ]));
+  }
+
+
+  _imagemBombaPosto() {
+    return Text(
+      'Alcool ou Gasolina?',
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.red, fontSize: 35.0),
+    );
   }
 
 
@@ -60,12 +63,12 @@ class _HomeState extends State<Home> {
     return TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-          labelText: "Digite o 1º número",
-          labelStyle: TextStyle(color: Colors.green, fontSize: 35)),
+          labelText: "Digite o preço do alcool",
+          labelStyle: TextStyle(color: Colors.white, fontSize: 25)),
       textAlign: TextAlign.center,
       style: TextStyle(
-        color: Colors.green,
-        fontSize: 35,
+        color: Colors.white,
+        fontSize: 25,
       ),
       controller: n1Controller,
     );
@@ -75,11 +78,13 @@ class _HomeState extends State<Home> {
     return TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-          labelText: "Digite o 2º número",
-          labelStyle: TextStyle(color: Colors.green, fontSize: 35)),
+          labelText: "Digite o preço da gasolina",
+          labelStyle: TextStyle(color: Colors.white, fontSize: 25)),
+
       textAlign: TextAlign.center,
       style: TextStyle(
-        color: Colors.green,
+        color: Colors.white,
+
         fontSize: 35,
       ),
       controller: n2Controller,
@@ -93,8 +98,8 @@ class _HomeState extends State<Home> {
         height: 50.0,
         child: RaisedButton(
           onPressed: _calcular,
-          child: Text("Multiplicar",
-              style: TextStyle(color: Colors.black, fontSize: 35.0)),
+          child: Text("Calcular",
+              style: TextStyle(color: Colors.white, fontSize: 35.0)),
           color: Colors.orange[200],
         ),
       ),
@@ -107,5 +112,25 @@ class _HomeState extends State<Home> {
       textAlign: TextAlign.center,
       style: TextStyle(color: Colors.red, fontSize: 35.0),
     );
+  }
+
+
+  void _calcular() {
+    setState(() {
+      double n1 = double.parse(n1Controller.text);
+      double n2 = double.parse(n2Controller.text);
+
+      double resultado = n1 / n2;
+
+      if (resultado <=0.7)
+      {
+        InfoResultado = 'É melhor abastecer com álcool.';
+      }
+
+      else
+      {
+        InfoResultado = 'É melhor abastecer com gasolina';
+      }
+    });
   }
 }

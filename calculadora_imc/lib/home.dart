@@ -11,61 +11,57 @@ class _HomeState extends State<Home> {
   TextEditingController n1Controller = TextEditingController();
   TextEditingController n2Controller = TextEditingController();
 
-  String InfoResultado = "";
-
-  void _calcular() {
-    setState(() {
-      double n1 = double.parse(n1Controller.text);
-      double n2 = double.parse(n2Controller.text);
-
-      double resultado = n1 * n2;
-      InfoResultado = 'Resultado: $resultado';
-    });
-  }
+  String InfoResultado = "Digite os dados para calcular";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: _AppBar(),
-        body: _Body(),
+      appBar: _AppBar(),
+      body: _Body(),
       backgroundColor: Colors.white,
-       );
-  }
-
-  _AppBar()
-  {
-   return AppBar(
-      title: Text("Multiplicador de números"),
-      centerTitle: true,
-      backgroundColor: Colors.purple,
     );
   }
 
-  _Body()
-  {
+  _AppBar() {
+    return AppBar(
+      title: Text("Calculadora IMC"),
+      centerTitle: true,
+      backgroundColor: Colors.purpleAccent,
+    );
+  }
+
+  _Body() {
     return SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              _imagemImc(),
               _texto1(),
               _texto2(),
               _botaoCalcular(),
-              _resultado()
+              _resultado(),
             ]));
   }
 
+  _imagemImc() {
+    return Text(
+      'Imagem IMC',
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.red, fontSize: 35.0),
+    );
+  }
 
   _texto1() {
     return TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-          labelText: "Digite o 1º número",
-          labelStyle: TextStyle(color: Colors.green, fontSize: 35)),
+          labelText: "Peso",
+          labelStyle: TextStyle(color: Colors.black, fontSize: 25)),
       textAlign: TextAlign.center,
       style: TextStyle(
-        color: Colors.green,
-        fontSize: 35,
+        color: Colors.black,
+        fontSize: 25,
       ),
       controller: n1Controller,
     );
@@ -75,11 +71,11 @@ class _HomeState extends State<Home> {
     return TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-          labelText: "Digite o 2º número",
-          labelStyle: TextStyle(color: Colors.green, fontSize: 35)),
+          labelText: "Altura (em metros)",
+          labelStyle: TextStyle(color: Colors.black, fontSize: 25)),
       textAlign: TextAlign.center,
       style: TextStyle(
-        color: Colors.green,
+        color: Colors.black,
         fontSize: 35,
       ),
       controller: n2Controller,
@@ -92,8 +88,8 @@ class _HomeState extends State<Home> {
       child: Container(
         height: 50.0,
         child: RaisedButton(
-          onPressed: _calcular,
-          child: Text("Multiplicar",
+          onPressed: _calcularImc,
+          child: Text("Verificar",
               style: TextStyle(color: Colors.black, fontSize: 35.0)),
           color: Colors.orange[200],
         ),
@@ -107,5 +103,40 @@ class _HomeState extends State<Home> {
       textAlign: TextAlign.center,
       style: TextStyle(color: Colors.red, fontSize: 35.0),
     );
+  }
+
+  void _calcularImc() {
+    setState(() {
+      double n1 = double.parse(n1Controller.text);
+      double n2 = double.parse(n2Controller.text);
+
+      double alturaimc = n2 * n2;
+      double resultado = n1 / alturaimc;
+      print(resultado);
+
+      if (resultado < 18.5) {
+        InfoResultado = 'Abaixo do peso';
+      }
+
+      if (resultado >= 18.5 && resultado < 25) {
+        InfoResultado = 'Peso normal';
+      }
+
+      if (resultado >= 25 && resultado < 30) {
+        InfoResultado = 'Sobrepeso';
+      }
+
+      if (resultado >= 30 && resultado < 35) {
+        InfoResultado = 'Obesidade Grau I';
+      }
+
+      if (resultado >= 35 && resultado < 40) {
+        InfoResultado = 'Obesidade Grau II';
+      }
+
+      if (resultado >= 40) {
+        InfoResultado = 'Obesidade Mórbida';
+      }
+    });
   }
 }
