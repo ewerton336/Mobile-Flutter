@@ -51,10 +51,11 @@ class _HomeState extends State<Home> {
 
 
   _imagemBombaPosto() {
-    return Text(
-      'Alcool ou Gasolina?',
-      textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.red, fontSize: 35.0),
+    return Center(
+        child: Image.asset('images/alcool.png',
+          height: 150,
+          width: 150,
+        )
     );
   }
 

@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  String InfoResultado = "Teste";
+  String InfoResultado = "";
 
 
   @override
@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
 
   _imagemNumeroAleatorio() {
     return Center(
-     child: Image.asset('/images/ponto-interrogacao.jpg',
+     child: Image.asset('images/ponto-interrogacao.jpg',
       height: 150,
       width: 150,
      )
