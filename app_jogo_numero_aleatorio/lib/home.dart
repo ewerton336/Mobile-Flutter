@@ -46,10 +46,11 @@ class _HomeState extends State<Home> {
 
 
   _imagemNumeroAleatorio() {
-    return Text(
-      'Numero Aleatório',
-      textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.red, fontSize: 35.0),
+    return Center(
+     child: Image.asset('/images/ponto-interrogacao.jpg',
+      height: 150,
+      width: 150,
+     )
     );
   }
 
