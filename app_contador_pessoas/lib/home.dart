@@ -27,9 +27,10 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              _resultado(),
               _botaoMaisPessoa(),
               _botaoMenosPessoa(),
-              _resultado()
+
             ]));
   }
 

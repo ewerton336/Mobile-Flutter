@@ -47,8 +47,9 @@ class _HomeState extends State<Home> {
   _imagemImc() {
     return Center(
         child: Image.asset('images/cintura.jpg',
-          height: 200,
-          width: 250,
+          height: 250,
+          //width: 200,
+          fit: BoxFit.contain
         )
     );
   }
