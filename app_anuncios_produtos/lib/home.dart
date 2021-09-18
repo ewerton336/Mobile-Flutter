@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: _titulo(),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueGrey,
         body: _corpo(),
       ),
     );
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
 
   _titulo() {
     return AppBar(
-      title: Text("Imagens"),
+      title: Text("Anúncios"),
       centerTitle: true,
       backgroundColor: Colors.green,
     );
@@ -38,11 +38,11 @@ class _HomeState extends State<Home> {
   _corpo() {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.yellow,
+        color: Colors.blueGrey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _texto('Anuncios recentes'),
+            _texto('Anuncios recentes (deslise para a esquerda para navegar)'),
             _carrosel(),
           ],
         ),
@@ -52,11 +52,10 @@ class _HomeState extends State<Home> {
 
   _carrosel() {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 20),
+      margin: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),
       height: 300,
       child: PageView(
         children: <Widget>[
-
           _foto('computador.jpg'),
           _foto('iphone.jpg'),
           _foto('ps4.jpg'),
@@ -66,7 +65,8 @@ class _HomeState extends State<Home> {
   }
 
   _foto(String nomeFoto) {
-    return Image.asset(
+    return
+      Image.asset(
       "assets/images/$nomeFoto",
       height: 300,
       fit: BoxFit.cover,
@@ -75,13 +75,14 @@ class _HomeState extends State<Home> {
   _texto(String texto) {
     return Text(
       "$texto",
+      textAlign: TextAlign.center,
       style: TextStyle(
           color: Colors.blue,
           fontSize: 30,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.italic,
           decoration: TextDecoration.underline,
-          decorationColor: Colors.red,
+          decorationColor: Colors.greenAccent,
           decorationStyle: TextDecorationStyle.wavy),
     );
   }
