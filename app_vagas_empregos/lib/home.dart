@@ -11,10 +11,6 @@ class _HomeState extends State<Home> {
   TextEditingController n1Controller = TextEditingController();
   TextEditingController n2Controller = TextEditingController();
 
-  String InfoResultado = "";
-
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +25,7 @@ class _HomeState extends State<Home> {
 
   _titulo() {
     return AppBar(
-      title: Text("Anúncios"),
+      title: Text("Vagas de Emprego"),
       centerTitle: true,
       backgroundColor: Colors.green,
     );
@@ -41,8 +37,8 @@ class _HomeState extends State<Home> {
         color: Colors.blueGrey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-            _texto('Anuncios recentes (deslise para a esquerda para navegar)'),
+          children: <Widget>[
+            _texto('Anuncios recentes (deslise para baixo para visualizar)'),
             _carrosel(),
           ],
         ),
@@ -53,29 +49,59 @@ class _HomeState extends State<Home> {
   _carrosel() {
     return Container(
       margin: EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20),
-      height: 350,
+      height: 300,
       child: PageView(
         children: <Widget>[
-          _foto('computador.jpg', 'Pc gamer top seminovo'),
-          _foto('iphone.jpg', 'Iphone 6 plus bloqueado'),
-          _foto('ps4.jpg', 'Playstation 4 zerado'),
+          _foto('ambev.jpg'),
         ],
       ),
     );
   }
 
-  _foto(String nomeFoto, String textoFoto) {
+  _foto(String nomeFoto) {
     return Container(
-     child: Column(
-      children: [Image.asset(
-      "assets/images/$nomeFoto",
-      height: 300,
-      fit: BoxFit.cover,
-    ),
-        _textoDescricaoAnuncio(textoFoto)]
-    )
+        child: Column(children: [
+      Image.asset(
+        "assets/images/$nomeFoto",
+        height: 15,
+        fit: BoxFit.cover,
+      ),
+      _textoTituloVaga('Analista Flutter'),
+      _textoDescricaoVaga('vagas para programador dart com experiência em Kotlin.')
+    ]));
+  }
+
+
+
+  _textoTituloVaga(String texto)
+  {
+    return Text(
+    '$texto',
+        textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Colors.red,
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
+
+
+  _textoDescricaoVaga(String texto) {
+    return Text(
+      "$texto",
+      textAlign: TextAlign.justify,
+      style: TextStyle(
+          color: Colors.black,
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+          decoration: TextDecoration.underline,
+          //decorationColor: Colors.greenAccent,
+          decorationStyle: TextDecorationStyle.wavy),
+    );
+  }
+
   _texto(String texto) {
     return Text(
       "$texto",
@@ -91,19 +117,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _textoDescricaoAnuncio(String texto) {
-    return Text(
-      "$texto",
-      textAlign: TextAlign.center,
-      style: TextStyle(
-          color: Colors.black,
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          fontStyle: FontStyle.italic,
-          decoration: TextDecoration.underline,
-          //decorationColor: Colors.greenAccent,
-          decorationStyle: TextDecorationStyle.wavy),
-    );
-  }
-}
 
+
+}
