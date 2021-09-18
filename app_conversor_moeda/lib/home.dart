@@ -68,9 +68,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-
-
-
   _botaoConverter() {
     return Padding(
       padding: EdgeInsets.only(top: 20.0, bottom: 35.0),
