@@ -13,28 +13,24 @@ class _HomeState extends State<Home> {
   String dropdownValor2 = 'Dolar';
   String InfoResultado = "";
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: _AppBar(),
-        body: _Body(),
+      appBar: _AppBar(),
+      body: _Body(),
       backgroundColor: Colors.white,
-       );
+    );
   }
 
-  _AppBar()
-  {
-   return AppBar(
+  _AppBar() {
+    return AppBar(
       title: Text("Conversor de Moedas"),
       centerTitle: true,
       backgroundColor: Colors.purple,
     );
   }
 
-  _Body()
-  {
+  _Body() {
     return SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Column(
@@ -50,15 +46,12 @@ class _HomeState extends State<Home> {
             ]));
   }
 
-
   _texto1(String texto) {
     return TextField(
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
           labelText: "$texto",
-          labelStyle: TextStyle(color: Colors.black,
-              fontSize: 35)
-      ),
+          labelStyle: TextStyle(color: Colors.black, fontSize: 35)),
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.black,
@@ -91,7 +84,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-
   _texto(String texto) {
     return Text(
       texto,
@@ -100,41 +92,35 @@ class _HomeState extends State<Home> {
     );
   }
 
-
   void _calcular() {
     setState(() {
-    double dolarParaReal = 5.29;
-    double realParaDolar = 0.19;
-    double input = double.parse(n1Controller.text);
-      if (dropdownValor1 == 'Real' && dropdownValor2 == 'Dolar')
-        {
-            double result = input / dolarParaReal;
-            InfoResultado = 'R\$$input = U\$$result';
-        }
-
-    if (dropdownValor1 == 'Dolar' && dropdownValor2 == 'Real')
-    {
-      double result = input * dolarParaReal;
-      InfoResultado = 'U\$$input = R\$$result';
-    }
-    else
-      {
-        InfoResultado = 'Você está tentando converter $dropdownValor1 para $dropdownValor2';
+      double dolarParaReal = 5.29;
+      double realParaDolar = 0.19;
+      double input = double.parse(n1Controller.text);
+      if (dropdownValor1 == 'Real' && dropdownValor2 == 'Dolar') {
+        double result = input / dolarParaReal;
+        InfoResultado = 'R\$$input = U\$$result';
       }
 
+      if (dropdownValor1 == 'Dolar' && dropdownValor2 == 'Real') {
+        double result = input * dolarParaReal;
+        InfoResultado = 'U\$$input = R\$$result';
+      } else {
+        InfoResultado =
+            'Você está tentando converter $dropdownValor1 para $dropdownValor2';
+      }
     });
   }
 
   _dropdown1() {
     return DropdownButton<String>(
       value: dropdownValor1,
-      items: <String>['Real', 'Dolar']
-          .map((String value) {
+      items: <String>['Real', 'Dolar'].map((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.red, fontSize: 35.0)),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.red, fontSize: 35.0)),
         );
       }).toList(),
       onChanged: (String? valorSelecionado) {
@@ -148,8 +134,7 @@ class _HomeState extends State<Home> {
   _dropdown2() {
     return DropdownButton<String>(
       value: dropdownValor2,
-      items: <String>['Real', 'Dolar']
-          .map((String value) {
+      items: <String>['Real', 'Dolar'].map((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value,
@@ -164,10 +149,4 @@ class _HomeState extends State<Home> {
       },
     );
   }
-
-
-
-
-
-
 }
