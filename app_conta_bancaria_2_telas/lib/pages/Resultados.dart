@@ -27,6 +27,7 @@ class Resultados extends StatelessWidget {
   }
 
   _body(BuildContext context) {
+
     return Center(
         child: Column(children: <Widget>[
       _texto('Nome: $nome'),
