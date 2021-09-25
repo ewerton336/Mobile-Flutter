@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
           labelText: "$texto",
-          labelStyle: TextStyle(color: Colors.black, fontSize: 35)),
+          labelStyle: TextStyle(color: Colors.black, fontSize: 25)),
       textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.black,
@@ -99,15 +99,17 @@ class _HomeState extends State<Home> {
       double input = double.parse(n1Controller.text);
       if (dropdownValor1 == 'Real' && dropdownValor2 == 'Dolar') {
         double result = input / dolarParaReal;
-        InfoResultado = 'R\$$input = U\$$result';
+        String resultString = result.toStringAsFixed(2);
+        InfoResultado = 'R\$$input = U\$$resultString';
       }
-
       if (dropdownValor1 == 'Dolar' && dropdownValor2 == 'Real') {
         double result = input * dolarParaReal;
-        InfoResultado = 'U\$$input = R\$$result';
-      } else {
+        String resultString = result.toStringAsFixed(2);
+        InfoResultado = 'U\$$input = R\$ $resultString';
+      }
+      if (dropdownValor1 == dropdownValor2) {
         InfoResultado =
-            'Você está tentando converter $dropdownValor1 para $dropdownValor2';
+        'Você está tentando converter $dropdownValor1 para $dropdownValor2';
       }
     });
   }

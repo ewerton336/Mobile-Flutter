@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _textoTitulo('Deslise para baixo para visualizar'),
+            _textoTitulo('Deslize para baixo para visualizar'),
             _carrosel(),
           ],
         ),
