@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,35 +6,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String _textoSalvo = "Nada salvo!";
   TextEditingController _controllerCampo = TextEditingController();
 
-  _salvar() async {
-    String valorDigitado = _controllerCampo.text;
+  _salvar() {}
 
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("nome", valorDigitado);
-
-    print("Método Salvar:  $valorDigitado");
-  }
-
-  _recuperar() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    setState(() {
-      _textoSalvo = prefs.getString("nome").toString();
-    });
-
-    print("Método Recuperar:  $_textoSalvo");
-  }
-
-  _remover() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    await prefs.remove("nome");
-
-    print("Método Remover");
-  }
+  _recuperar() {}
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +23,12 @@ class _HomeState extends State<Home> {
         child: Column(
           children: <Widget>[
             Text(
-              _textoSalvo,
+              "Nada salvo!",
               style: TextStyle(fontSize: 20),
             ),
             TextField(
               keyboardType: TextInputType.text,
-              decoration: InputDecoration(labelText: "Digite seu nome"),
+              decoration: InputDecoration(labelText: "Digite algo"),
               controller: _controllerCampo,
             ),
             Row(
@@ -62,23 +37,16 @@ class _HomeState extends State<Home> {
                   color: Colors.blue,
                   textColor: Colors.white,
                   padding: EdgeInsets.all(15),
-                  child: Text("Salvar", style: TextStyle(fontSize: 15)),
+                  child: Text("Salvar", style: TextStyle(fontSize: 20)),
                   onPressed: _salvar,
                 ),
                 RaisedButton(
                   color: Colors.blue,
                   textColor: Colors.white,
                   padding: EdgeInsets.all(15),
-                  child: Text("Recuperar", style: TextStyle(fontSize: 15)),
+                  child: Text("Recuperar", style: TextStyle(fontSize: 20)),
                   onPressed: _recuperar,
-                ),
-                RaisedButton(
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(15),
-                  child: Text("Remover", style: TextStyle(fontSize: 15)),
-                  onPressed: _remover,
-                ),
+                )
               ],
             )
           ],
